@@ -1,20 +1,19 @@
 import Head from "next/head";
-import Image from "next/image";
-import BookList from "../components/Homepage/book-list";
-import Page from "../components/UI/page";
-import styles from "../styles/Home.module.css";
+// import Image from "next/image";
+import BookList from "../../components/Homepage/book-list";
+import Page from "../../components/UI/page";
 
-export default function Home(props) {
+export default function Books(props) {
   return (
     <div>
       <Head>
-        <title>Lumiere | Home</title>
+        <title>Lumiere | All Books</title>
         <meta name="description" content="For Lumiere Books" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Page>
-          <h1 className="text-3xl customFont text-gray-700 ">Featured Books</h1>
+          <h1 className="text-3xl customFont text-gray-700 ">All Books</h1>
           <BookList books={props.books} />
         </Page>
       </main>
