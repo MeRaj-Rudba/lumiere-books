@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Fragment } from "react";
 import BookDetails from "../../../components/detailsPage/book-details";
 import Page from "../../../components/UI/page";
+import variables from "../../../util/variables";
 
 export default function BoookDetails({ book }) {
   return (
@@ -24,7 +25,7 @@ export default function BoookDetails({ book }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("https://lumiere-book.herokuapp.com/books");
+  const res = await fetch(`${variables.apiRoute}/books`);
   const items = await res.json();
 
   const paths = items.books.map((item) => ({
@@ -35,9 +36,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `https://lumiere-book.herokuapp.com/books/${params.id}`
-  );
+  const res = await fetch(`${variables.apiRoute}/books/${params.id}`);
   const item = await res.json();
 
   return { props: { book: item.book } };

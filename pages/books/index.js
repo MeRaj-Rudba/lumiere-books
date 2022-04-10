@@ -1,9 +1,14 @@
+import React, { useState } from "react";
 import Head from "next/head";
+import BooksHeader from "../../components/Books/books-header";
 // import Image from "next/image";
 import BookList from "../../components/Homepage/book-list";
 import Page from "../../components/UI/page";
+import EditBook from "../../components/Books/edit-book";
+import variables from "../../util/variables";
 
 export default function Books(props) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div>
       <Head>
@@ -14,6 +19,8 @@ export default function Books(props) {
       <main>
         <Page>
           <h1 className="text-3xl customFont text-gray-700 ">All Books</h1>
+          <BooksHeader setShowModal={setShowModal} />
+          {showModal ? <EditBook setShowModal={setShowModal} /> : null}
           <BookList books={props.books} />
         </Page>
       </main>
@@ -22,7 +29,7 @@ export default function Books(props) {
 }
 
 export async function getStaticProps(context) {
-  const data = await fetch("https://lumiere-book.herokuapp.com/books");
+  const data = await fetch(`${variables.apiRoute}/books`);
   // console.log(data);
   const result = await data.json();
   return {

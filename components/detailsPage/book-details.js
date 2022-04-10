@@ -1,13 +1,14 @@
 import React from "react";
 import { LogoNodejs } from "react-ionicons";
 import { IoPricetag } from "react-icons/io5";
+import variables from "../../util/variables";
 
 export default function BookDetails(props) {
   const { book } = props;
   return (
     <div className="w-full p-10 max-w-3xl grid justify-items-center  content-center bg-white rounded-lg border border-gray-200 shadow">
       <img
-        src={book.image}
+        src={`${variables.apiRoute}/${book.image}`}
         alt={book.title}
         className="w-64 object-cover object-center "
       />

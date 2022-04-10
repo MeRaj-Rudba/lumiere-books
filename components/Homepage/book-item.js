@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/router";
+import fallback from "../../public/image/image-placeholder.png";
+import variables from "../../util/variables";
 
 export default function BookItem(props) {
   const { book } = props;
@@ -10,15 +12,17 @@ export default function BookItem(props) {
     // console.log(`Show Details`);
     router.push(`books/${book._id.toString()}`);
   };
-
+  console.log(book);
   return (
     <div
       onClick={handleDetails}
       className="max-w-sm bg-white rounded-lg border border-gray-200 shadow  my-5 hover:scale-105 hover:cursor-pointer transition-all duration-500"
     >
       <img
-        src={book.image}
+        src={`${variables.apiRoute}/${book.image}`}
         className="h-64 w-full object-cover object-center rounded-t-lg"
+        alt={book.title}
+        onError={(e) => (e.currentTarget.src = fallback.Src)}
       />
       <div className="p-5">
         <p className="mb-2 text-xl tracking-tight text-gray-700 customFont">

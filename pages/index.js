@@ -3,6 +3,7 @@ import Image from "next/image";
 import BookList from "../components/Homepage/book-list";
 import Page from "../components/UI/page";
 import styles from "../styles/Home.module.css";
+import variables from "../util/variables";
 
 export default function Home(props) {
   return (
@@ -23,7 +24,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps(context) {
-  const data = await fetch("https://lumiere-book.herokuapp.com/books");
+  const data = await fetch(`${variables.apiRoute}/books`);
   // console.log(data);
   const result = await data.json();
   return {
